@@ -1,0 +1,18 @@
+---
+- name: "Bootstrap MySQL Router"
+  expect:
+    command: "mysqlrouter --bootstrap icroot@{{ mysql_host[env] }}:{{ mysql_port }} --user=mysqlrouter --force"
+    responses:
+      (?i)password: "{{ icroot_db_password }}"
+
+- name: "ReStart MySQL Router 1"
+  systemd:
+    name: mysqlrouter
+    state: restarted
+    enabled: true
+
+- name: "ReStart MySQL Router 2"
+  systemd:
+    name: mysqlrouter
+    state: restarted
+    enabled: true

@@ -1,0 +1,25 @@
+---
+- name: "Starting Mysqlrouter bootstrap"
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: "Verify whether --extra-vars \"env=<env name>\" is present"
+    fail:
+      msg: "--extra-vars \"env=<env name>\" is NOT present. Add this to your ansible-play command"
+    when: env is undefined
+
+- name: "Starting Mysqlrouter bootstrap"
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: "Verify whether --extra-vars \"srv_grp=<server group>\" is present"
+    fail:
+      msg: "--extra-vars \"srv_grp=<server group>\" is NOT present. Add this to your ansible-play command"
+    when: srv_grp is undefined
+
+- name: MysqlRouter bootstrap
+  hosts: "{{ srv_grp }}"
+  become: true
+  become_user: root
+  roles:
+    - mysqlrouter

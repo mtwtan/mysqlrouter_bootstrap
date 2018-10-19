@@ -1,0 +1,11 @@
+---
+# ### Database
+icroot_db_password: ""
+#
+# ### MySQL
+mysql_host:
+  dev: ""
+  qa: ""
+  prod: ""
+#
+mysql_port: "3306"
